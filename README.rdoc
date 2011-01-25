@@ -1,12 +1,12 @@
-= doc_pu
+= Doc Pu
 
 A wiki export and document publishing tool, sponsored by: ATV-Elektronik (http://atv-elektronik.co.at/)
 Created by: Christian Raschko
 
 = Install
 
-*clone this plugin in vendor/plugins
+clone this plugin in vendor/plugins
 
-*<tt>git clone git://github.com/erikkallen/redmine_doc_pu.git</tt>
+<tt>git clone git://github.com/erikkallen/redmine_doc_pu.git</tt>
 
-*restart redmine
+restart redmine
