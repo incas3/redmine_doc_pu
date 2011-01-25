@@ -1,0 +1,26 @@
+<p><label><%=t :field_latex_bin %></label><%= text_field_tag "settings[latex_bin]", @settings["latex_bin"], :size => 50 %>
+<%= button_to_remote t(:button_test),
+	:url => { :controller => :doc_pu_settings, :action => :test_latex},
+	:with => "'file=' + $('settings_latex_bin').value",
+	:update => "latex-bin-result";
+%>
+</p>
+<div id="latex-bin-result"></div>
+
+<p><label><%=t :field_makindex_bin %></label><%= text_field_tag "settings[makeindex_bin]", @settings["makeindex_bin"], :size => 50 %>
+<%= button_to_remote t(:button_test),
+	:url => { :controller => :doc_pu_settings, :action => :test_makeindex},
+	:with => "'file=' + $('settings_makeindex_bin').value",
+	:update => "makeindex-bin-result";
+%>
+</p>
+<div id="makeindex-bin-result"></div>
+
+<p><label><%=t :field_template_dir %></label><%= text_field_tag "settings[template_dir]", @settings["template_dir"], :size => 50 %>
+<%= button_to_remote t(:button_test),
+	:url => { :controller => :doc_pu_settings, :action => :test_template},
+	:with => "'file=' + $('settings_template_dir').value",
+	:update => "template-dir-result";
+%>
+</p>
+<div id="template-dir-result"></div>

@@ -1,0 +1,18 @@
+<div class="contextual">
+	<%= link_to t(:link_build_document), {:controller => :doc_pu, :action => :build, :project_id => @project, :id => @doc}, :class => "icon icon-package" %>
+</div>
+
+<h2><%=t :heading_code %></h2>
+<div id="template-result">
+	<div style="height:400px" class="box autoscroll">
+		<table>
+			<tbody>
+				<% @code.each do |l| %> 
+					<tr>
+						<td><%= l %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

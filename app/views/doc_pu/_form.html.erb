@@ -1,0 +1,33 @@
+<div class="box">
+<% labelled_tabular_form_for :doc, @doc, :url => {:id => @doc, :project_id => @project} do |f| %>
+	<%= error_messages_for :doc %>
+	
+	<div class="splitcontentleft">
+		<p><%= f.text_field :name, :size => 30, :required => true %></p>
+		<p><%= f.select :template, options_for_select(@templates_list, @doc.template), :required => true %></p>
+		<p><%= f.text_field :doc_title, :size => 30 %> <%= acronym_info_tag t(:info_doc_title) %></p>
+		<p><%= f.text_field :doc_author, :size => 30 %> <%= acronym_info_tag t(:info_doc_author) %></p>
+		<p><%= f.text_field :doc_date, :size => 30 %> <%= acronym_info_tag t(:info_doc_date) %></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+	</div>
+	<div class="splitcontentright">
+		<p><%= f.check_box :latex_add_chapter %> <%= acronym_info_tag t(:info_latex_add_chapter) %></p>
+		<p><%= f.check_box :latex_remove_macro %> <%= acronym_info_tag t(:info_latex_remove_macro) %></p>
+		<p><%= f.check_box :latex_code %> <%= acronym_info_tag t(:info_latex_code) %></p>
+		<p><%= f.check_box :latex_page_ref %> <%= acronym_info_tag t(:info_latex_page_ref) %></p>
+		<p><%= f.check_box :latex_footnote %> <%= acronym_info_tag t(:info_latex_footnote) %></p>
+		<p><%= f.check_box :latex_index_emphasis %> <%= acronym_info_tag t(:info_latex_index_emphasis) %></p>
+		<p><%= f.check_box :latex_index_importance %> <%= acronym_info_tag t(:info_latex_index_importance) %></p>
+		<p><%= f.check_box :latex_table_border %> <%= acronym_info_tag t(:info_latex_table_border) %></p>
+		<p><%= f.check_box :latex_image_ref %> <%= acronym_info_tag t(:info_latex_image_ref) %></p>
+
+	</div>
+
+<div align=left><%= submit_tag l(:button_save) %></div>
+<% end %> 
+</div>

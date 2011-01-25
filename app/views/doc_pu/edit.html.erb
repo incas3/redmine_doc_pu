@@ -1,0 +1,29 @@
+<div class="contextual">
+	<%= link_to_if_authorized t(:link_build_document), {:controller => :doc_pu, :action => :build, :project_id => @project, :id => @doc}, :class => "icon icon-package" %>
+</div>
+
+<h2><%=t :heading_edit_document %></h2>
+
+<%= render "form" %>
+
+<div class="splitcontentleft">
+	<div class="contextual">
+		<%= link_to_if_authorized t(:link_add_wiki_page), {:controller => :doc_pu_wiki, :action => :new, :project_id => @project, :doc_pu_id => @doc}, :class => "icon icon-add" %>
+	</div>
+
+	<h3><%=t :heading_wiki_pages %></h3>
+	<% @doc_pu_wikis = @doc.doc_pu_wiki_pages %>
+	<% @doc_pu = @doc %>
+	<%= render "doc_pu_wiki/list" %>
+</div>
+
+<div class="splitcontentright">
+	<div class="contextual">
+		<%= link_to_if_authorized t(:link_show_code), {:controller => :doc_pu, :action => :template, :project_id => @project, :id => @doc}, :class => "icon icon-file text-plain" %>
+	</div>
+	
+	<h3><%=t :heading_template_info %></h3>		
+	<div class="box">
+		<%= textilizable @template_info %>
+	</div>
+</div>

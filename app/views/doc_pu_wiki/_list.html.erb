@@ -1,0 +1,26 @@
+<div class="autoscroll">
+	<table class="list">
+		<thead><tr>
+			<th><%=t :field_wiki_page %></th>
+			<th><%=t :field_chapter_name %></th>
+			<th><%=t :field_sort %></th>
+			<th></th>
+		</tr></thead>
+
+		<tbody>
+			<% @doc_pu_wikis.all.each do |page| %> 
+				<tr class="<%= cycle("odd", "even") %>">
+					<td><%= link_to page.wiki_page.title, {:controller => :doc_pu_wiki, :action => :edit, :project_id => @project, :doc_pu_id => @doc, :id => page} %></td>
+					<td><%= page.chapter_name %></td>
+					<td align="center" style="width:15%;">
+						<%= reorder_links(:doc_pu_wiki, {:controller => :doc_pu_wiki, :action => :edit_order, :project_id => @project, :doc_pu_id => @doc_pu, :id => page}) %>
+					</td>
+					<td class="buttons">
+						<%= link_to t(:link_edit), {:controller => :doc_pu_wiki, :action => :edit, :project_id => @project, :doc_pu_id => @doc_pu, :id => page}, :class => "icon icon-edit" %>
+						<%= link_to t(:link_delete), {:controller => :doc_pu_wiki, :action => :delete, :project_id => @project, :doc_pu_id => @doc_pu, :id => page}, :class => "icon icon-del", :confirm => t(:text_are_you_sure) %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

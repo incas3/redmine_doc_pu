@@ -1,0 +1,52 @@
+%%%
+%%% This is a _DocPu_ template file
+%%%
+%%% *document class:* report, a4paper, 11pt
+%%% *language:* english
+%%% *contains:* titlepage, table of contents, list of figures, index
+%%% *special:* enable code line numbers, set default image resolution to 150 DPI
+%%%
+
+% using article default size
+\documentclass[a4paper,11pt]{report}
+
+% textile required packages
+\usepackage{listings}
+\usepackage[normalem]{ulem}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{makeidx}
+\usepackage{hyperref}
+
+% enable code line numbers
+\lstset{numbers=left}
+
+% set default image resolution to 150 DPI
+\pdfimageresolution 150
+
+% titlepage macros
+\title{}
+\author{}
+\date{\today}
+
+% initialize makeindex
+\makeindex
+
+\begin{document}
+	% title on the first page
+	\maketitle
+
+	% table of contents
+	\tableofcontents
+
+	% list of figures
+	\listoffigures
+
+	% input
+	\input{document.tex}
+
+	% print index
+	\printindex
+	
+\end{document}

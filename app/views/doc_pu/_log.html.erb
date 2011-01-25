@@ -1,0 +1,15 @@
+<div id="log-result">
+	<div style="height:400px" class="box autoscroll">
+		<table>
+			<tbody>
+				<% @log.each do |l| %> 
+					<tr>
+						<td class="center" width=15><%= build_icon(l[:msg]) %></td>
+						<td><%= l[:line] %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<div class="flash <%= flash_msg(@error)%>"><%= @error %></div>
+</div>

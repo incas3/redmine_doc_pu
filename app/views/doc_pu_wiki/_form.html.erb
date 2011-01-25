@@ -1,0 +1,36 @@
+<div class="box">
+<% labelled_tabular_form_for :doc_pu_wiki, @doc_pu_wiki, :url => {:project_id => @project, :doc_pu_id => @doc_pu} do |f| %>
+	<%= error_messages_for :doc_pu_wiki %>
+	
+	<div class="splitcontentleft">
+		<p><%= f.select :wiki_page_id, options_from_collection_for_select(@project.wiki.pages, :id, :title, @doc_pu_wiki.wiki_page_id), :required => true %></p>
+		<p><%= f.text_field :chapter_name, :size => 30 %> <%= acronym_info_tag t(:info_chapter_name) %></p>
+		<p><%= f.check_box :use_doc_flags %> <%= acronym_info_tag t(:info_use_doc_flags) %></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+	</div>
+	<div class="splitcontentright">
+		<p><%= f.check_box :latex_add_chapter, :disabled => @doc_pu_wiki.use_doc_flags %> <%= acronym_info_tag t(:info_latex_add_chapter) %></p>
+		<p><%= f.check_box :latex_remove_macro, :disabled => @doc_pu_wiki.use_doc_flags %> <%= acronym_info_tag t(:info_latex_remove_macro) %></p>
+		<p><%= f.check_box :latex_code, :disabled => @doc_pu_wiki.use_doc_flags %> <%= acronym_info_tag t(:info_latex_code) %></p>
+		<p><%= f.check_box :latex_page_ref, :disabled => @doc_pu_wiki.use_doc_flags %> <%= acronym_info_tag t(:info_latex_page_ref) %></p>
+		<p><%= f.check_box :latex_footnote, :disabled => @doc_pu_wiki.use_doc_flags %> <%= acronym_info_tag t(:info_latex_footnote) %></p>
+		<p><%= f.check_box :latex_index_emphasis, :disabled => @doc_pu_wiki.use_doc_flags %> <%= acronym_info_tag t(:info_latex_index_emphasis) %></p>
+		<p><%= f.check_box :latex_index_importance, :disabled => @doc_pu_wiki.use_doc_flags %> <%= acronym_info_tag t(:info_latex_index_importance) %></p>
+		<p><%= f.check_box :latex_table_border, :disabled => @doc_pu_wiki.use_doc_flags %> <%= acronym_info_tag t(:info_latex_table_border) %></p>
+		<p><%= f.check_box :latex_image_ref, :disabled => @doc_pu_wiki.use_doc_flags %> <%= acronym_info_tag t(:info_latex_image_ref) %></p>
+	</div>
+
+<%= submit_tag l(:button_save) %>
+<% end %> 
+</div>

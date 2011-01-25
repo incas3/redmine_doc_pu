@@ -1,0 +1,46 @@
+<div class="contextual">
+	<%= link_to_if_authorized t(:link_new_document), {:controller => :doc_pu, :action => :new, :project_id => @project}, :class => "icon icon-add" %>
+</div>
+
+<h2><%=t :heading_documents %></h2>
+
+<div class="autoscroll">
+	<table class="list">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th><%=t :field_document %></th>
+				<th><%=t :field_author %></th>
+				<th><%=t :field_wiki_page %></th>
+				<th><%=t :field_template %></th>
+				<th><%=t :field_created_at %></th>
+				<th><%=t :field_built_at %></th>
+				<th></th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% @documents.each do |doc| %> 
+				<tr class="<%= cycle("odd", "even") %>">
+					<td align="center"><%= doc.id %></td>
+					<% if authorize_for(:doc_pu, :edit) %>
+						<td><%= link_to doc.name, {:controller => :doc_pu, :action => :edit, :project_id => @project, :id => doc} %></td>
+					<% else %>
+						<td><%= doc.name %></td>
+					<% end %>
+					<td align="center"><%= link_to doc.user.name, {:controller => :users, :action => :show, :id => doc.user} %></td>
+					<td><%= print_wiki_pages doc.doc_pu_wiki_pages, doc %></td>
+					<td align="center"><%= doc.template %></td>
+					<td align="center"><%= format_date doc.created_at %></td>
+					<td align="center"><%= format_date doc.built_at %></td>
+					<td class="buttons">
+						<%= link_to_if_authorized t(:link_view), {:controller => :doc_pu, :action => :open, :project_id => @project, :id => doc}, :class => "icon icon-file application-pdf" %>
+						<%= link_to_if_authorized t(:link_build), {:controller => :doc_pu, :action => :build, :project_id => @project, :id => doc}, :class => "icon icon-package" %>
+						<%= link_to_if_authorized t(:link_edit), {:controller => :doc_pu, :action => :edit, :project_id => @project, :id => doc}, :class => "icon icon-edit" %>
+						<%= link_to_if_authorized t(:link_delete), {:controller => :doc_pu, :action => :delete, :project_id => @project, :id => doc}, :class => "icon icon-del", :confirm => t(:text_are_you_sure) %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
