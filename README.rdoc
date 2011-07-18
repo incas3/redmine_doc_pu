@@ -5,8 +5,15 @@ Created by: Christian Raschko
 
 = Install
 
+Install RedCloth gem
+<tt>gem install RedCloth</tt>
+
 clone this plugin in vendor/plugins
 
 <tt>git clone git://github.com/erikkallen/redmine_doc_pu.git</tt>
+
+migrate plugins
+
+<tt>rake db:migrate:plugins RAILS_ENV=production</tt>
 
 restart redmine
