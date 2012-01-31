@@ -23,7 +23,7 @@ module RedCloth::Formatters::LATEX_EX
 		output << "  \\centering\n"
 		cols = "X" * @table[0].size if not draw_table_border_latex
 		cols = "|" + "X|" * @table[0].size if draw_table_border_latex
-		output << "  \\begin{tabularx}{\textwidth}{#{cols}}\n"
+		output << "  \\begin{tabularx}{\\textwidth}{#{cols}}\n"
 		output << "   \\hline \n" if draw_table_border_latex
 		@table.each do |row|
 			hline = (draw_table_border_latex ? "\\hline" : "")
@@ -36,10 +36,13 @@ module RedCloth::Formatters::LATEX_EX
 
 	def image(opts)
 		opts[:alt] = opts[:src]
+		
 		# Don't know how to use remote links, plus can we trust them?
 		return "" if opts[:src] =~ /^\w+\:\/\//
 		# Resolve CSS styles if any have been set
-		styling = opts[:class].to_s.split(/\s+/).collect { |style| latex_image_styles[style] }.compact.join ','
+		#styling = opts[:class].to_s.split(/\s+/).collect { |style| latex_image_styles[style] }.compact.join ','
+		styling = "width=\\textwidth";
+		Logger.new("/tmp/latex.log").info latex_image_styles
 		# Build latex code
 		[ "\\begin{figure}[#{(opts[:align].nil? ? "H" : "htb")}]",
 		  "  \\centering",
@@ -70,8 +73,8 @@ module RedClothExtensionLatex
 	def latex_page_ref(text)
 		text.gsub!(/(\s|^)\[\[(.*?)(\|(.*?)|)\]\]/i) do |m|
 			var = $2
-			label = $4
-			"<notextile> #{label} \\ref{page:#{var}}</notextile>"
+			label = $2.gsub(/_/, ' ')
+			"<notextile> #{label} (page \\ref{chapter:#{var}})</notextile>"
 		end
 	end
 
